@@ -1,4 +1,4 @@
-classdef mixEA < ALGORITHM
+classdef KEMOEA < ALGORITHM
 % <multi> <real/binary> <large/none> <constrained/none> <sparse>
 % Evolutionary algorithm for sparse multi-objective optimization problems
 
@@ -117,4 +117,5 @@ classdef mixEA < ALGORITHM
        end
         end
     end
+
 end
