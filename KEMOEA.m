@@ -81,7 +81,7 @@ classdef KEMOEA< ALGORITHM
                 populationmask2 = [populationmask2;repmat(Mask1,1+3*REAL,1);Mask2];
                 Population = [Solution,solution];
                 A = [A,Population];
-                Fitness    =  NDSort([Population.objs,Population.cons],inf);
+                Fitness    =  computefitness([Population.objs,Population.cons],inf);
                 temp(i,:) = Fitness;
          end
          Population2 =A;
