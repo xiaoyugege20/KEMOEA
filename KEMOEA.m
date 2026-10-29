@@ -66,10 +66,10 @@ classdef KEMOEA< ALGORITHM
                 Mask1 = zeros(1,Problem.D);
                 Mask1(1,i) = 1;
                 Mask2 = zeros(1,Problem.D);
-                  for j = 1 : 1+4*REAL
+                  for j = 1 : 1+3*REAL
                       if REAL
 %                          Dec = unifrnd(repmat(Problem.lower,1,1),repmat(Problem.upper,1,1));
-                         Dec = repmat(Problem.lower,1,1)+(j-1)/4*(repmat(Problem.upper,1,1)-repmat(Problem.lower,1,1));
+                         Dec = repmat(Problem.lower,1,1)+(j-1)/3*(repmat(Problem.upper,1,1)-repmat(Problem.lower,1,1));
                          solution = SOLUTION(Dec.*Mask1);
                       else
                          Dec = ones(1,Problem.D);
@@ -78,7 +78,7 @@ classdef KEMOEA< ALGORITHM
                       Solution = [Solution, solution];
                   end
                 solution = SOLUTION(Dec.*Mask2);
-                populationmask2 = [populationmask2;repmat(Mask1,1+4*REAL,1);Mask2];
+                populationmask2 = [populationmask2;repmat(Mask1,1+3*REAL,1);Mask2];
                 Population = [Solution,solution];
                 A = [A,Population];
                 Fitness    =  NDSort([Population.objs,Population.cons],inf);
@@ -88,9 +88,9 @@ classdef KEMOEA< ALGORITHM
          guidedsolution = zeros(1,Problem.D);  
          for i = 1:Problem.D
                 c = unique(temp(i,:));
-                if(size(c,2) == 2+4*REAL&&temp(i,2+4*REAL)==min(temp(i,:)))
+                if(size(c,2) == 2+3*REAL&&temp(i,2+3*REAL)==min(temp(i,:)))
                     guidedsolution(i) = 0;
-                elseif(size(c,2) == 2+4*REAL)
+                elseif(size(c,2) == 2+3*REAL)
                     guidedsolution(i) = 1;
                 else
                     guidedsolution(i) = 1;
